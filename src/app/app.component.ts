@@ -1,4 +1,4 @@
-import { APP_NAME } from 'app/common/strings';
+import { APP_NAME } from 'app/common/strings/strings';
 import { Component } from '@angular/core';
 
 @Component({
