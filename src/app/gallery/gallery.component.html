@@ -1,12 +1,14 @@
-<mat-form-field appearance="fill" class="search-input">
-  <input
-    matInput
-    placeholder="Search for images"
-    (keyup.enter)="searchImages()"
-    [formControl]="search"
-  />
-</mat-form-field>
-<button mat-button color="primary" (click)="searchImages()">Search</button>
+<div class="search-container">
+  <mat-form-field appearance="fill" class="search-input">
+    <input
+      matInput
+      placeholder="Search for images"
+      (keyup.enter)="searchImages()"
+      [formControl]="search"
+    />
+  </mat-form-field>
+  <button mat-button color="primary" (click)="searchImages()">Search</button>
+</div>
 
 <div class="state-container" [ngSwitch]="pageState">
   <div *ngSwitchCase="'error'">Something went wrong :(</div>
@@ -14,15 +16,28 @@
     <mat-spinner></mat-spinner>
   </div>
   <div *ngSwitchDefault class="show-images">
-    <mat-grid-list [cols]="gridColumns" rowHeight="2:1" class="grid">
-      <mat-grid-tile *ngFor="let photo of photos">
-        <img [src]="photo.src.tiny" class="image-result" />
-      </mat-grid-tile>
-    </mat-grid-list>
-
-    <mat-spinner
-      *ngIf="loadingMoreImages"
-      class="more-images-spinner"
-    ></mat-spinner>
+    <div *ngIf="photos.length === 0 && imagesSearched; else imageGrid">
+      No images :(
+    </div>
   </div>
 </div>
+
+<ng-template #imageGrid>
+  <mat-grid-list
+    [cols]="gridColumns"
+    rowHeight="2:1"
+    guttersize="0"
+    class="grid"
+  >
+    <mat-grid-tile *ngFor="let photo of photos">
+      <button class="image-button" (click)="openImageDialog(photo)">
+        <img [src]="photo.src.tiny" class="image-result" />
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-spinner
+    *ngIf="loadingMoreImages"
+    class="more-images-spinner"
+  ></mat-spinner>
+</ng-template>

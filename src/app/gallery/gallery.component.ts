@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import {
   createClient,
   PhotosWithTotalResults,
@@ -8,6 +9,7 @@ import {
 } from 'pexels';
 import { CurrentViewService } from 'app/common/current-view/current-view.service';
 import { SupportedViews } from 'app/common/current-view/supported-views-enum';
+import { ImageDialogComponent } from 'app/gallery/image-dialog/image-dialog.component';
 
 type PageState = 'error' | 'loading' | 'loaded';
 type GridColumns = 5 | 3 | 1;
@@ -16,6 +18,7 @@ type GridColumns = 5 | 3 | 1;
   selector: 'gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.sass'],
+  providers: [],
 })
 export class GalleryComponent implements OnInit {
   private readonly PEXEL_CLIENT = createClient(
@@ -29,8 +32,12 @@ export class GalleryComponent implements OnInit {
   search = new FormControl('');
   gridColumns: GridColumns = 5;
   loadingMoreImages = false;
+  imagesSearched = false;
 
-  constructor(readonly currentViewService: CurrentViewService) {}
+  constructor(
+    readonly currentViewService: CurrentViewService,
+    private readonly dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.currentViewService.currentView.subscribe((view) => {
@@ -48,6 +55,7 @@ export class GalleryComponent implements OnInit {
   }
 
   searchImages() {
+    this.imagesSearched = true;
     this.pageState = 'loading';
 
     this.PEXEL_CLIENT.photos
@@ -109,5 +117,11 @@ export class GalleryComponent implements OnInit {
           });
       }
     }
+  }
+
+  openImageDialog(photo: Photo) {
+    const dialogRef = this.dialog.open(ImageDialogComponent, {
+      data: { photo },
+    });
   }
 }

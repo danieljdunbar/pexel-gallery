@@ -7,6 +7,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ImageDialogModule } from 'app/gallery/image-dialog/image-dialog.module';
 
 import { GalleryComponent } from './gallery.component';
 
@@ -14,6 +15,7 @@ import { GalleryComponent } from './gallery.component';
   declarations: [GalleryComponent],
   imports: [
     CommonModule,
+    ImageDialogModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,

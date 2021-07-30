@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Photographer: {{ data.photo.photographer }}</h1>
+
+<div mat-dialog-content>
+  <img [src]="data.photo.src.large" />
+</div>
+
+<div mat-dialog-actions class="actions">
+  <button mat-button class="cancel" color="primary" (click)="closeDialog()">
+    Close
+  </button>
+  <button mat-flat-button color="primary" (click)="downloadImage()">
+    Download
+  </button>
+</div>
