@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { createClient, PhotosWithTotalResults, ErrorResponse } from 'pexels';
+
+type PageState = 'error' | 'loading' | 'loaded';
 
 @Component({
   selector: 'gallery',
@@ -12,6 +15,8 @@ export class GalleryComponent implements OnInit {
   );
   private readonly IMAGES_PER_PAGE = 30;
   private currentPhotos: PhotosWithTotalResults;
+  pageState: PageState = 'loaded';
+  search = new FormControl('');
 
   constructor() {}
 
@@ -24,13 +29,20 @@ export class GalleryComponent implements OnInit {
   }
 
   searchImages() {
+    this.pageState = 'loading';
+
     this.PEXEL_CLIENT.photos
-      .search({ query: 'zebra', per_page: this.IMAGES_PER_PAGE, page: 1 })
+      .search({
+        query: this.search.value,
+        per_page: this.IMAGES_PER_PAGE,
+        page: 1,
+      })
       .then((photos) => {
         if (this.isError(photos)) {
-          // TODO: handle error
+          this.pageState = 'error';
         } else {
           this.currentPhotos = photos;
+          this.pageState = 'loaded';
         }
       });
   }
