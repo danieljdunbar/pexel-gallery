@@ -30,8 +30,7 @@ export class ImageDialogComponent implements OnInit {
           this.photoUrl = this.data.photo.src.large;
           break;
         case SupportedViews.TABLET:
-          this.photoUrl = this.data.photo.src.medium;
-          break;
+        case SupportedViews.MOBILE:
         default:
           this.photoUrl = this.data.photo.src.medium;
       }

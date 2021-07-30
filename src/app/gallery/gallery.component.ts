@@ -48,6 +48,7 @@ export class GalleryComponent implements OnInit {
         case SupportedViews.TABLET:
           this.gridColumns = 3;
           break;
+        case SupportedViews.MOBILE:
         default:
           this.gridColumns = 1;
       }
