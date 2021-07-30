@@ -121,7 +121,7 @@ export class GalleryComponent implements OnInit {
   }
 
   openImageDialog(photo: Photo) {
-    const dialogRef = this.dialog.open(ImageDialogComponent, {
+    this.dialog.open(ImageDialogComponent, {
       data: { photo },
     });
   }

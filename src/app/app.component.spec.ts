@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { APP_NAME } from 'app/common/strings/strings';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -18,8 +19,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('span').textContent).toContain(
-      'Pexel Gallery'
-    );
+    expect(compiled.querySelector('span').textContent).toContain(APP_NAME);
   });
 });

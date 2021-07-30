@@ -8,7 +8,6 @@ import {
   DESKTOP_MEDIA_QUERY,
 } from './current-view.service';
 import { BreakpointState, BreakpointObserver } from '@angular/cdk/layout';
-import { doesNotReject } from 'assert';
 
 describe('Service: CurrentView', () => {
   let currentViewService: CurrentViewService;

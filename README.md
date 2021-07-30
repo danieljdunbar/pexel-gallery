@@ -2,6 +2,10 @@
 
 An angular website which allows a user to search and download the images available in Pexel.
 
+## Citations
+
+[Detect when bottom of page is reached.](https://stackoverflow.com/questions/40664766/how-to-detect-scroll-to-bottom-of-html-element)
+
 ## Execution information
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
