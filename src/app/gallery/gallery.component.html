@@ -1,4 +1,4 @@
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" class="search-input">
   <input
     matInput
     placeholder="Search for images"
@@ -19,5 +19,10 @@
         <img [src]="photo.src.tiny" class="image-result" />
       </mat-grid-tile>
     </mat-grid-list>
+
+    <mat-spinner
+      *ngIf="loadingMoreImages"
+      class="more-images-spinner"
+    ></mat-spinner>
   </div>
 </div>
