@@ -1,7 +1,9 @@
 <h1 mat-dialog-title>Photographer: {{ data.photo.photographer }}</h1>
 
 <div mat-dialog-content>
-  <img [src]="data.photo.src.large" />
+  <div class="image-container">
+    <img [src]="photoUrl" />
+  </div>
 </div>
 
 <div mat-dialog-actions class="actions">
