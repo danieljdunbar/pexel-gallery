@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { createClient, PhotosWithTotalResults, ErrorResponse } from 'pexels';
+import { CurrentViewService } from 'app/common/current-view/current-view.service';
+import { SupportedViews } from 'app/common/current-view/supported-views-enum';
 
 type PageState = 'error' | 'loading' | 'loaded';
+type GridColumns = 5 | 3 | 1;
 
 @Component({
   selector: 'gallery',
@@ -17,11 +20,23 @@ export class GalleryComponent implements OnInit {
   private currentPhotos: PhotosWithTotalResults;
   pageState: PageState = 'loaded';
   search = new FormControl('');
+  gridColumns: GridColumns = 5;
 
-  constructor() {}
+  constructor(readonly currentViewService: CurrentViewService) {}
 
   ngOnInit() {
-    this.searchImages();
+    this.currentViewService.currentView.subscribe((view) => {
+      switch (view) {
+        case SupportedViews.DESKTOP:
+          this.gridColumns = 5;
+          break;
+        case SupportedViews.TABLET:
+          this.gridColumns = 3;
+          break;
+        default:
+          this.gridColumns = 1;
+      }
+    });
   }
 
   get photos() {

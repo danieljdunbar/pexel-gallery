@@ -1,3 +1,4 @@
+import { CurrentViewService } from 'app/common/current-view/current-view.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -14,6 +15,7 @@ import { AppComponent } from './app.component';
     GalleryModule,
     MatToolbarModule,
   ],
+  providers: [CurrentViewService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

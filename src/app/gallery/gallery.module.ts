@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { GalleryComponent } from './gallery.component';
 
@@ -16,6 +17,7 @@ import { GalleryComponent } from './gallery.component';
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatInputModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
