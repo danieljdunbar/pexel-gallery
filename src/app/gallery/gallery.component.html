@@ -3,11 +3,10 @@
     <input
       matInput
       placeholder="Search for images"
-      (keyup.enter)="searchImages()"
       [formControl]="search"
+      (keyup)="searchImages()"
     />
   </mat-form-field>
-  <button mat-button color="primary" (click)="searchImages()">Search</button>
 </div>
 
 <div class="state-container" [ngSwitch]="pageState">
